@@ -1,7 +1,7 @@
 buildscript {
     ext {
-        compose_version = '1.0.1'
-        koin_version = '3.1.5'
+        compose_version = '1.1.1'
+        koin_version = '3.2.0-beta-1'
         ok_http_version = '4.9.3'
         gson_version = '2.9.0'
     }
