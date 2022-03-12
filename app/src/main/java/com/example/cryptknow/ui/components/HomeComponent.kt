@@ -9,10 +9,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import com.example.coinloreapi.models.CoinLoreResponse
 import com.example.coinloreapi.models.GlobalCoinResponse
 import com.example.coinloreapi.repository.GlobalCoinRepository
-import com.example.cryptknow.utils.stateManagement.NetworkUIState
-import com.example.cryptknow.utils.stateManagement.NetworkingState.networkUiState
 
 @Composable
 fun HomeItems(coinRepository: GlobalCoinRepository){
@@ -22,17 +21,17 @@ fun HomeItems(coinRepository: GlobalCoinRepository){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val coinState by produceState(initialValue = NetworkUIState<GlobalCoinResponse>(isSuccessful = false, loading = true) ){
-            val response = coinRepository.getGlobalCoin()
-            value = networkUiState(response)
+        val coinState by produceState(initialValue = CoinLoreResponse<GlobalCoinResponse>() ){
+            val response = coinRepository.getGlobalCoinResponse()
+            value = response
         }
-        if(coinState.loading){
+        if(coinState.isOk == false){
             Text(text = "loading")
         }
 
-        if(coinState.isSuccessful){
+        if(coinState.isOk == true){
             Text(
-                coinState.response?.toString()!!
+                coinState.data.toString()
             )
         }
 
