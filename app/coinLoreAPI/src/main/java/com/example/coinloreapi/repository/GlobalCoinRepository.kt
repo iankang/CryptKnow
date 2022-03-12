@@ -2,17 +2,19 @@ package com.example.coinloreapi.repository
 
 import android.util.Log
 import com.example.coinloreapi.api.CoinLoreAPI
+
 import com.example.coinloreapi.models.GlobalCoinResponse
 import com.example.coinloreapi.utils.NetworkState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
+import org.koin.java.KoinJavaComponent.inject
+
 import java.io.IOException
 
-class GlobalCoinRepository(
-    private val coinLoreAPI: CoinLoreAPI
-) {
+class GlobalCoinRepository {
 
+    private val coinLoreAPI: CoinLoreAPI by inject(CoinLoreAPI::class.java)
     private val TAG = GlobalCoinRepository::class.java.name
 
     suspend fun getGlobalCoin(): NetworkState<GlobalCoinResponse> = withContext(Dispatchers.IO) {

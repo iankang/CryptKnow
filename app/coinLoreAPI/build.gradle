@@ -47,9 +47,12 @@ dependencies {
     api("com.squareup.okhttp3:okhttp")
     api("com.squareup.okhttp3:logging-interceptor")
 
+    // Koin main features for Android
     api "io.insert-koin:koin-android:$koin_version"
-    // Jetpack Compose
-    implementation "io.insert-koin:koin-androidx-compose:$koin_version"
+    // Java Compatibility
+    api "io.insert-koin:koin-android-compat:$koin_version"
+
+    //gson
     api("com.squareup.retrofit2:converter-gson:$gson_version")
 
     //coroutines

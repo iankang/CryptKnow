@@ -4,7 +4,8 @@ import com.example.coinloreapi.models.GlobalCoinResponse
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface CoinLoreAPI {
+
+interface CoinLoreAPI{
 
     @GET("api/global/")
     suspend fun getGlobalCoinData():Response<GlobalCoinResponse>
