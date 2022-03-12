@@ -1,6 +1,6 @@
 package com.example.coinloreapi.di
 
-import com.example.coinloreapi.api.CoinLoreAPI
+import com.example.coinloreapi.api.CoinLoreAPIRequests
 import com.example.coinloreapi.utils.Constants.COIN_LORE_BASE_API
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -47,6 +47,6 @@ fun provideOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor):OkHttpCl
         .build()
 }
 
-fun provideCoinLoreApi(retrofit: Retrofit):CoinLoreAPI{
-    return retrofit.create(CoinLoreAPI::class.java)
+fun provideCoinLoreApi(retrofit: Retrofit):CoinLoreAPIRequests{
+    return retrofit.create(CoinLoreAPIRequests::class.java)
 }

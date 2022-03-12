@@ -10,19 +10,19 @@ import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.coinloreapi.models.CoinLoreResponse
-import com.example.coinloreapi.models.GlobalCoinResponse
-import com.example.coinloreapi.repository.GlobalCoinRepository
+import com.example.coinloreapi.models.CoinSocialMediaResponse
+import com.example.coinloreapi.repository.CoinLoreApi
 
 @Composable
-fun HomeItems(coinRepository: GlobalCoinRepository){
+fun HomeItems(coinLoreApi: CoinLoreApi){
 
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        val coinState by produceState(initialValue = CoinLoreResponse<GlobalCoinResponse>() ){
-            val response = coinRepository.getGlobalCoinResponse()
+        val coinState by produceState(initialValue = CoinLoreResponse<CoinSocialMediaResponse>() ){
+            val response = coinLoreApi.getCoinSocialMedia(4)
             value = response
         }
         if(coinState.isOk == false){
