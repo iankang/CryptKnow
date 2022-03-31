@@ -5,13 +5,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.coinloreapi.models.Data
@@ -129,86 +129,70 @@ fun CoinCard(item: Data) {
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 fun CoinCardPreview(){
-    Card(
-        modifier = Modifier
-            .fillMaxWidth(0.95f)
-            .height(120.dp),
-        shape =  RoundedCornerShape(6.dp),
-        backgroundColor = MaterialTheme.colors.primaryVariant,
-        contentColor = MaterialTheme.colors.onPrimary,
-        elevation = 4.dp
-    ) {
-        Surface(
+//   Card(
+//        modifier = Modifier
+//            .fillMaxWidth()
+//            .height(266.dp)
+//            .padding(16.dp),
+//       shape = RoundedCornerShape(4.dp),
+//       backgroundColor = MaterialTheme.colors.background,
+//       elevation = 8.dp
+//   ){
+//   Surface(
+//          modifier = Modifier
+//              .fillMaxWidth()
+//              .padding(16.dp)
+//      ){
+        Row(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(4.dp),
-            shape = RoundedCornerShape(4.dp),
-            contentColor = MaterialTheme.colors.onPrimary
-        ){
-            Column(
-                verticalArrangement = Arrangement.SpaceEvenly
+                .fillMaxWidth()
+                .height(72.dp),
+            verticalAlignment = Alignment.Top
+        ) {
+
+            Box(
+                modifier = Modifier.size(72.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.Rounded.Home,
+                    contentDescription = "default image",
+                    modifier = Modifier.size(48.dp)
+                )
+            }
+
+            Box(
+                modifier = Modifier.height(72.dp),
+                contentAlignment = Alignment.Center
             ) {
 
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    horizontalArrangement = Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically
+                Column(
+                    verticalArrangement = Arrangement.SpaceAround
                 ) {
                     Text(
-                        "Rank: #1",
-                        color = MaterialTheme.colors.onSurface
-                    )
-
-                    Text(
-                        "Bitcoin",
-                        color = MaterialTheme.colors.onSurface
+                        text = "Bitcoin",
+                        style = MaterialTheme.typography.h5
                     )
                     Text(
-                        "Symbol",
-                        color = MaterialTheme.colors.onSurface
+                        text = "subTitle",
+                        fontWeight = FontWeight.Light,
+                        style = MaterialTheme.typography.caption
                     )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    horizontalArrangement = Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        "MarketCap: 9234",
-                        color = MaterialTheme.colors.onSurface
-                    )
-
-                    Text(
-                        "CoinSupply: $3434",
-                        color = MaterialTheme.colors.onSurface
-                    )
-
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(),
-                    horizontalArrangement = Arrangement.SpaceAround,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        "Price: 9234",
-                        color = MaterialTheme.colors.onSurface
-                    )
-
-                    Text(
-                        "Price USD: $3434",
-                        color = MaterialTheme.colors.onSurface
-                    )
-
                 }
             }
 
-        }
-    }
-}
+            Box(
+                modifier = Modifier.fillMaxWidth().height(72.dp).padding(16.dp),
+                contentAlignment = Alignment.CenterEnd
+            ){
+                Text(
+                    text = "01",
+                    style = MaterialTheme.typography.body1
+                )
+            }
+            }
+
+
+      }
+//   }
+//}
