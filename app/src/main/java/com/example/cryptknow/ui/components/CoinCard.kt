@@ -12,9 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.coinloreapi.models.Data
+import com.example.cryptknow.utils.stateManagement.StringUtils.prettyCount
 
 
 @Composable
@@ -26,7 +28,7 @@ fun CardList(data: List<Data>?) {
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         items(data!!){ item ->
-            CoinCard(item)
+            CoinListItem(item)
         }
     }
 }
@@ -126,73 +128,77 @@ fun CoinCard(item: Data) {
 }
 
 @Composable
+fun CoinListItem(item: Data){
+    CoinCardPreview(
+        rank = item.rank.toString(),
+        coin = item.name,
+        marketCap = item.marketCapUsd,
+        percentageChange = item.percentChange1h
+    )
+}
+
+@Composable
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
-fun CoinCardPreview(){
-//   Card(
-//        modifier = Modifier
-//            .fillMaxWidth()
-//            .height(266.dp)
-//            .padding(16.dp),
-//       shape = RoundedCornerShape(4.dp),
-//       backgroundColor = MaterialTheme.colors.background,
-//       elevation = 8.dp
-//   ){
-//   Surface(
-//          modifier = Modifier
-//              .fillMaxWidth()
-//              .padding(16.dp)
-//      ){
-        Row(
+fun CoinCardPreview(
+    rank:String = "1",
+    coin:String = "Bitcoin",
+    marketCap:String = "3434344343",
+    percentageChange:String = "24"
+
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(72.dp)
+            .padding(16.dp),
+        verticalAlignment = Alignment.Top
+    ) {
+
+        Box(
+            modifier = Modifier.size(72.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Icon(
+                imageVector = Icons.Rounded.Home,
+                contentDescription = "default image",
+                modifier = Modifier.size(48.dp)
+            )
+        }
+
+        Box(
+            modifier = Modifier.height(72.dp),
+            contentAlignment = Alignment.Center
+        ) {
+
+            Column(
+                verticalArrangement = Arrangement.SpaceAround
+            ) {
+                Text(
+                    text = "#$rank $coin",
+                    style = MaterialTheme.typography.h6,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = "${prettyCount(marketCap.toBigDecimal())}",
+                    fontWeight = FontWeight.Light,
+                    style = MaterialTheme.typography.caption
+                )
+            }
+        }
+
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(72.dp),
-            verticalAlignment = Alignment.Top
+            contentAlignment = Alignment.CenterEnd
         ) {
-
-            Box(
-                modifier = Modifier.size(72.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Icon(
-                    imageVector = Icons.Rounded.Home,
-                    contentDescription = "default image",
-                    modifier = Modifier.size(48.dp)
-                )
-            }
-
-            Box(
-                modifier = Modifier.height(72.dp),
-                contentAlignment = Alignment.Center
-            ) {
-
-                Column(
-                    verticalArrangement = Arrangement.SpaceAround
-                ) {
-                    Text(
-                        text = "Bitcoin",
-                        style = MaterialTheme.typography.h5
-                    )
-                    Text(
-                        text = "subTitle",
-                        fontWeight = FontWeight.Light,
-                        style = MaterialTheme.typography.caption
-                    )
-                }
-            }
-
-            Box(
-                modifier = Modifier.fillMaxWidth().height(72.dp).padding(16.dp),
-                contentAlignment = Alignment.CenterEnd
-            ){
                 Text(
-                    text = "01",
+                    text = "$percentageChange %",
                     style = MaterialTheme.typography.body1
                 )
-            }
-            }
+        }
+    }
 
 
-      }
-//   }
-//}
+}
