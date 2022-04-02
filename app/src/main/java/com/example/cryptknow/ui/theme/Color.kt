@@ -21,5 +21,8 @@ val LightGrey700 = Color(0xFF8D8D8D)
 val YellowSecLight = Color(0xFFffff6b)
 val YellowSec = Color(0xFFFDD835)
 val YellowSecDark = Color(0xFFc6a700)
+val LightBlue = Color(0xFF4e516d)
+val NormalBlue = Color(0xFF252942)
+val DarkBlue = Color(0xFF00001c)
 
 
